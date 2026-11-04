@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Coding Workshop",
+    "description": "Join us for a hands-on coding workshop for beginners.",
+    "image": "https://storage.googleapis.com/a1aa/image/Tjz4YbG64krkLZv96mCDO0YobpK5CkOuRFcffKxFZkyejjbnA.jpg",
+    "link": "#"
+  },
+  {
+    "title": "Hackathon",
+    "description": "Participate in our upcoming hackathon and showcase your skills.",
+    "image": "https://storage.googleapis.com/a1aa/image/rI74rDpu7BZwDp7bPpYvdTBc5lGp9jQdH3bQnjBXq4fA542JA.jpg",
+    "link": "#"
+  },
+  {
+    "title": "Tech Seminar",
+    "description": "Attend our seminar to learn about the latest in technology.",
+    "image": "https://storage.googleapis.com/a1aa/image/pTjhTjVOJkLBNROu7k49UaQ9UnIOK3O3C7z0RHsLIkPf442JA.jpg",
+    "link": "#"
+  }
+]
+
