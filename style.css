@@ -177,6 +177,10 @@ img { max-width: 100%; }
   padding: 1.75rem;
   box-shadow: var(--shadow);
 }
+.bee { display: block; width: 100%; max-width: 260px; height: auto; margin: 0 auto 1rem; overflow: visible; }
+.bee .wing { transform-box: fill-box; transform-origin: 50% 100%; animation: flap .12s ease-in-out infinite alternate; }
+.bee .wing-b { animation-delay: -.06s; }
+@keyframes flap { from { transform: scaleY(1); } to { transform: scaleY(.55); } }
 .hero-card .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
 .stat { text-align: center; }
 .stat strong {

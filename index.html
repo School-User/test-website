@@ -38,6 +38,21 @@
       </div>
     </div>
     <div class="hero-card">
+      <svg class="bee" viewBox="0 0 200 160" role="img" aria-label="Code Connect bee">
+        <g class="wing"><ellipse cx="88" cy="46" rx="26" ry="16" fill="rgba(34,211,238,.35)" stroke="#6d5efc" stroke-width="2"/></g>
+        <g class="wing wing-b"><ellipse cx="112" cy="46" rx="22" ry="14" fill="rgba(34,211,238,.35)" stroke="#6d5efc" stroke-width="2"/></g>
+        <ellipse cx="88" cy="96" rx="58" ry="40" fill="#fde047" stroke="#1e1b4b" stroke-width="3"/>
+        <path d="M62 60 Q70 96 62 132 M90 56 Q98 96 90 136 M118 60 Q126 96 118 130" fill="none" stroke="#1e1b4b" stroke-width="10" opacity=".85"/>
+        <g class="head">
+          <circle cx="150" cy="78" r="30" fill="#fde047" stroke="#1e1b4b" stroke-width="3"/>
+          <circle cx="140" cy="70" r="11" fill="#fff" stroke="#1e1b4b" stroke-width="2"/>
+          <circle cx="162" cy="70" r="11" fill="#fff" stroke="#1e1b4b" stroke-width="2"/>
+          <circle class="pupil" cx="140" cy="70" r="5" fill="#1e1b4b"/>
+          <circle class="pupil" cx="162" cy="70" r="5" fill="#1e1b4b"/>
+          <path d="M140 90 Q151 98 162 90" fill="none" stroke="#1e1b4b" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M146 52 Q144 34 134 26 M156 52 Q158 34 168 26" fill="none" stroke="#1e1b4b" stroke-width="2"/>
+        </g>
+      </svg>
       <div class="stat-row">
         <div class="stat"><strong>3</strong><span>Event types</span></div>
         <div class="stat"><strong>Free</strong><span>To attend</span></div>
@@ -121,5 +136,36 @@
   </div>
   <p class="copyright">© 2026 Code Connect. All rights reserved.</p>
 </footer>
+<script>
+  // Bee face: pupils and head lean toward the cursor.
+  (function () {
+    const bee = document.querySelector('.bee');
+    if (!bee) return;
+    const head = bee.querySelector('.head');
+    const pupils = bee.querySelectorAll('.pupil');
+    const eyes = [[140, 70], [162, 70]];
+    let mx = null, my = null, queued = false;
+    function aim() {
+      queued = false;
+      if (mx === null) return;
+      const r = bee.getBoundingClientRect();
+      const sx = 200 / r.width, sy = 160 / r.height;
+      const px = (mx - r.left) * sx, py = (my - r.top) * sy;
+      pupils.forEach((p, i) => {
+        const [ex, ey] = eyes[i];
+        const dx = px - ex, dy = py - ey, d = Math.hypot(dx, dy) || 1;
+        const k = Math.min(3.5, d) / d;
+        p.setAttribute('cx', ex + dx * k);
+        p.setAttribute('cy', ey + dy * k);
+      });
+      const lean = Math.max(-6, Math.min(6, (px - 150) / 12));
+      head.setAttribute('transform', `rotate(${lean.toFixed(1)} 150 78)`);
+    }
+    addEventListener('pointermove', e => {
+      mx = e.clientX; my = e.clientY;
+      if (!queued) { queued = true; requestAnimationFrame(aim); }
+    });
+  })();
+</script>
 </body>
 </html>
